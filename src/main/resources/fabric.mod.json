@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "notforgotten",
+  "version": "${version}",
+
+  "name": "Not Forgotten",
+  "description": "Safely retrieve items lost on death.",
+  "authors": [
+    "SilverGleam"
+  ],
+  "contact": {
+    "sources": "https://github.com/SilverGleam/notforgotten"
+  },
+
+  "license": "MIT",
+  "icon": "assets/notforgotten/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.gleam.markers.Markers"
+    ],
+    "client": [
+      {
+        "value": "net.gleam.markers.client.MarkersClient"
+      }
+    ]
+  },
+  "mixins": [
+    "markers.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "*"
+  }
+}

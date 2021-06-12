@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "notforgotten:block/marker_weathered", "y":  180},
+    "facing=east":  { "model": "notforgotten:block/marker_weathered", "y":  270},
+    "facing=south": { "model": "notforgotten:block/marker_weathered", "y": 0 },
+    "facing=west":  { "model": "notforgotten:block/marker_weathered", "y": 90 }
+  }
+}
