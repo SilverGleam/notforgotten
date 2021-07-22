@@ -4,7 +4,8 @@
   "package": "net.gleam.markers.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "ExplosionMixin"
   ],
   "client": [
   ],
