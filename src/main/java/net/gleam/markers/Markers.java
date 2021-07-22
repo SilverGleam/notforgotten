@@ -82,9 +82,6 @@ public class Markers implements ModInitializer {
 
 		BlockPos blockPos = new BlockPos(pos.x, pos.y - 1, pos.z);
 
-		BlockState blockState = world.getBlockState(blockPos);
-		Block block = blockState.getBlock();
-
 		DefaultedList<ItemStack> combinedInventory = DefaultedList.of();
 
 		combinedInventory.addAll(player.getInventory().main);
@@ -103,6 +100,9 @@ public class Markers implements ModInitializer {
 		}
 		
 		for (BlockPos markerPos : BlockPos.iterateOutwards(blockPos.add(new Vec3i(0, 1, 0)), 5, 5, 5)) {
+			BlockState blockState = world.getBlockState(markerPos);
+			Block block = blockState.getBlock();
+
 			if(canPlaceMarker(world, block, markerPos)) {
 				world.setBlockState(markerPos, Markers.MARKER.getDefaultState().with(Properties.HORIZONTAL_FACING, player.getHorizontalFacing()));
 				
