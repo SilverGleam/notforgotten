@@ -9,17 +9,17 @@ public class MarkerUtil {
     // the following equations should all equate to ints
     // https://minecraft.fandom.com/wiki/Experience#Leveling_up
     if (16 >= level) {
-      levelExperience = (int) (levelSquared + 6 * level);
+      levelExperience = (int) (levelSquared + 6 * level) + 1;
       progressExperience = (int) ((2 * level + 7) * progress);
     }
 
     if (31 >= level) {
-      levelExperience = (int) (2.5 * levelSquared - 40.5 * level + 360);
+      levelExperience = (int) (2.5 * levelSquared - 40.5 * level + 360) + 1;
       progressExperience = (int) ((5 * level - 38) * progress);
     }
 
     if (level >= 32) {
-      levelExperience = (int) (4.5 * levelSquared - 162.5 * level + 2220);
+      levelExperience = (int) (4.5 * levelSquared - 162.5 * level + 2220) + 1;
       progressExperience = (int) ((9 * level - 158) * progress);
     }
 
