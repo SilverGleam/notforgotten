@@ -13,6 +13,7 @@ import net.gleam.markers.api.MarkersApi;
 import net.gleam.markers.block.AgingMarker.BlockAge;
 import net.gleam.markers.block.MarkerBase;
 import net.gleam.markers.block.entity.MarkerBlockEntity;
+import net.gleam.markers.util.MarkerUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -109,7 +110,11 @@ public class Markers implements ModInitializer {
 				MarkerBlockEntity markerBlockEntity = new MarkerBlockEntity(markerPos, world.getBlockState(markerPos));
 				markerBlockEntity.setItems(combinedInventory);
 				markerBlockEntity.setMarkerOwner(player.getGameProfile());
-				markerBlockEntity.setXp(player.totalExperience);
+				int currentExperience = MarkerUtil.calculateTotalExperience(
+						player.experienceLevel, 
+						player.experienceProgress
+				);
+				markerBlockEntity.setXp(currentExperience);
 				player.totalExperience = 0;
 				player.experienceProgress = 0;
 				player.experienceLevel = 0;
