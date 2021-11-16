@@ -13,6 +13,7 @@ import net.gleam.markers.api.MarkersApi;
 import net.gleam.markers.block.AgingMarker.BlockAge;
 import net.gleam.markers.block.MarkerBase;
 import net.gleam.markers.block.entity.MarkerBlockEntity;
+import net.gleam.markers.util.MarkerUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -82,9 +83,6 @@ public class Markers implements ModInitializer {
 
 		BlockPos blockPos = new BlockPos(pos.x, pos.y - 1, pos.z);
 
-		BlockState blockState = world.getBlockState(blockPos);
-		Block block = blockState.getBlock();
-
 		DefaultedList<ItemStack> combinedInventory = DefaultedList.of();
 
 		combinedInventory.addAll(player.getInventory().main);
@@ -103,13 +101,20 @@ public class Markers implements ModInitializer {
 		}
 		
 		for (BlockPos markerPos : BlockPos.iterateOutwards(blockPos.add(new Vec3i(0, 1, 0)), 5, 5, 5)) {
+			BlockState blockState = world.getBlockState(markerPos);
+			Block block = blockState.getBlock();
+
 			if(canPlaceMarker(world, block, markerPos)) {
 				world.setBlockState(markerPos, Markers.MARKER.getDefaultState().with(Properties.HORIZONTAL_FACING, player.getHorizontalFacing()));
 				
 				MarkerBlockEntity markerBlockEntity = new MarkerBlockEntity(markerPos, world.getBlockState(markerPos));
 				markerBlockEntity.setItems(combinedInventory);
 				markerBlockEntity.setMarkerOwner(player.getGameProfile());
-				markerBlockEntity.setXp(player.totalExperience);
+				int currentExperience = MarkerUtil.calculateTotalExperience(
+						player.experienceLevel, 
+						player.experienceProgress
+				);
+				markerBlockEntity.setXp(currentExperience);
 				player.totalExperience = 0;
 				player.experienceProgress = 0;
 				player.experienceLevel = 0;
