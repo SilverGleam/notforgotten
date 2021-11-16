@@ -13,7 +13,7 @@ public class MarkerUtil {
       progressExperience = (int) ((2 * level + 7) * progress);
     }
 
-    if (31 >= level) {
+    if (31 >= level && level >= 16) {
       levelExperience = (int) (2.5 * levelSquared - 40.5 * level + 360) + 1;
       progressExperience = (int) ((5 * level - 38) * progress);
     }
